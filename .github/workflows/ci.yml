@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload Artifact
         if: "${{ env.CI_RELEASE == 'true' }}"
-        uses: "AButler/upload-release-assets@b2b56d8ca22109e8606ac54603ab60dfb32058a7"
+        uses: "AButler/upload-release-assets@ec6d3263266dc57eb6645b5f75e827987f7c217d"
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           files: build/ui-bundle.zip
