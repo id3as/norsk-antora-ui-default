@@ -2,6 +2,15 @@ name: CI
 
 on:
   push:
+    branches: [ "master", "ci" ]
+  pull_request:
+    branches: [ "master" ]
+  release:
+    types: [ "published" ]
+
+
+env:
+  CI_RELEASE: "${{ github.event_name == 'release' }}"
 
 jobs:
   build:
@@ -22,5 +31,13 @@ jobs:
           node_modules/.bin/gulp lint
 
       - name: Bundle
+        if: "${{ env.CI_RELEASE == 'true' }}"
         run: |
           node_modules/.bin/gulp bundle
+
+      - name: Upload Artifact
+        if: "${{ env.CI_RELEASE == 'true' }}"
+        uses: "AButler/upload-release-assets@b2b56d8ca22109e8606ac54603ab60dfb32058a7"
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          files: build/ui-bundle.zip
