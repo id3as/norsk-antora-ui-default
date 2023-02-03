@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master", "ci" ]
+  pull_request:
+    branches: [ "master" ]
+  release:
+    types: [ "published" ]
+
+
+env:
+  CI_RELEASE: "${{ github.event_name == 'release' }}"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: |
+          npm ci --quiet --no-progress
+
+      - name: Lint
+        run: |
+          node_modules/.bin/gulp lint
+
+      - name: Bundle
+        if: "${{ env.CI_RELEASE == 'true' }}"
+        run: |
+          node_modules/.bin/gulp bundle
+
+      - name: Upload Artifact
+        if: "${{ env.CI_RELEASE == 'true' }}"
+        uses: "AButler/upload-release-assets@ec6d3263266dc57eb6645b5f75e827987f7c217d"
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          files: build/ui-bundle.zip
