@@ -6,3 +6,9 @@
     </div>
   </aside>
 </div>
+<script>
+  const navLinks = document.querySelectorAll("a.nav-link");
+  [...navLinks].forEach((link, index) => {
+    link.title = link.innerText
+  });
+</script>

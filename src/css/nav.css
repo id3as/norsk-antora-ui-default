@@ -110,8 +110,12 @@ html.is-clipped--nav {
   margin-top: 0.5rem;
 }
 
+/* Keep nav entries to one line - we use JS to set up a hover if they are truncated */
 .nav-item {
   margin-top: 0.5em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 /* adds some breathing room below a nested list */
