@@ -14,6 +14,20 @@
   if (!menuPanel) return
   var explorePanel = navContainer.querySelector('[data-panel=explore]')
 
+  function init () {
+    if (menuPanel.querySelector('.is-current-page')) return
+    var currentHash = window.location.href
+    var currentPage = currentHash.slice(0, currentHash.length - window.location.hash.length)
+    var pageMatch, hashMatch
+    for (var link of menuPanel.querySelectorAll('.nav-link[href]')) {
+      if (link.href === currentHash) hashMatch = link
+      if (link.href === currentPage) pageMatch = link
+    }
+    var match = hashMatch || pageMatch
+    if (match && match.parentElement) match.parentElement.classList.add('is-current-page')
+  }
+  init()
+
   var currentPageItem = menuPanel.querySelector('.is-current-page')
   var originalPageItem = currentPageItem
   if (currentPageItem) {
