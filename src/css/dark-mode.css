@@ -43,6 +43,12 @@
   .nav {
     background-color: #f1f1f1;
     box-shadow: 0.5px 0 3px #fff;
+    color: #505050;
+  }
+
+  .is-current-page > .nav-link,
+  .is-current-page > .nav-text {
+    color: black;
   }
 
   .toolbar {
