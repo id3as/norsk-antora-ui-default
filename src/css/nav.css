@@ -144,6 +144,15 @@ html.is-clipped--nav {
   width: calc(var(--nav-line-height) * 1em);
   margin-top: -0.05em;
   margin-left: calc(var(--nav-line-height) * -1em);
+  opacity: 0.5;
+}
+
+.nav-item-toggle:hover {
+  opacity: 1;
+}
+
+.nav-item-toggle:has(+ .nav-text:hover) {
+  opacity: 1;
 }
 
 .nav-item.is-active > .nav-item-toggle {
