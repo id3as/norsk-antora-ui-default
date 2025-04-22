@@ -1,7 +1,11 @@
 @media (prefers-color-scheme: dark) {
   /* Make sure overscroll is dark */
   html {
-    background-color: black;
+    background-color: #1e1e1e;
+  }
+
+  body {
+    background-color: #212121;
   }
 
   /* Use a filter to invert lightness without affecting hues (roughly) */
