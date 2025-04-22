@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a href="{{{or (relativize site.homeUrl) (or site.url (or siteRootUrl siteRootPath))}}}">
-        <!-- height: 3.5rem instead of 100% to work around Safari bug -->
+        <!-- height: var(--bar-height) instead of 100% to work around Safari bug -->
         <img src="{{{uiRootPath}}}/img/Norsk-Logo-Dark-Background.svg" style="height: 3.5rem; padding: 6px 0px" alt="Norsk logo" />
       </a>
       <a class="navbar-item" href="{{{or (relativize site.homeUrl) (or site.url (or siteRootUrl siteRootPath))}}}">{{site.title}}</a>
